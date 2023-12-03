@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const formCadastro = document.getElementById('form-cadastro');
     formCadastro.addEventListener('submit', cadastrarProduto);
 });
+const redirecionarParaLogin = () => {
 
+    const novaPagina = './login/index.html';
+    window.location.href = novaPagina;
+}
 function mostrarAba(aba) {
     const abas = document.querySelectorAll('.aba');
     abas.forEach((element) => {
@@ -28,28 +32,22 @@ function carregarProdutos() {
     listaProdutos.innerHTML = '';
 
     fetch('http://localhost:3000/produtos')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro de resposta do servidor: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
         .then(produtos => {
             produtos.forEach(produto => {
                 const li = document.createElement('li');
-                li.textContent = `${produto.nome} - Quantidade: ${produto.quantidade}`;
-
-                const botaoApagar = document.createElement('button');
-                botaoApagar.textContent = 'Apagar';
-                botaoApagar.addEventListener('click', () => apagarProduto(produto.id));
-                li.appendChild(botaoApagar);
-
-                const botaoEditar = document.createElement('button');
-                botaoEditar.textContent = 'Editar';
-                botaoEditar.addEventListener('click', () => editarProduto(produto.id));
-                li.appendChild(botaoEditar);
-
+                li.textContent = `${produto.nome} - Quantidade: ${produto.quantidade} - Preço: R$ ${produto.preco.toFixed(2)}`;
                 listaProdutos.appendChild(li);
             });
 
             mensagemListagem.style.display = produtos.length > 0 ? 'block' : 'none';
         })
-        .catch(error => console.error('Erro ao obter a lista de produtos:', error));
+        .catch(error => console.error(`Erro ao obter a lista de produtos: ${error.message}`));
 }
 
 function buscarProduto() {
@@ -67,7 +65,7 @@ function buscarProduto() {
 
             produtosFiltrados.forEach(produto => {
                 const li = document.createElement('li');
-                li.textContent = `${produto.nome} - Quantidade: ${produto.quantidade}`;
+                li.textContent = `${produto.nome} - Quantidade: ${produto.quantidade} - Preço: R$ ${produto.preco.toFixed(2)}`;
 
                 const botaoApagar = document.createElement('button');
                 botaoApagar.textContent = 'Apagar';
@@ -106,9 +104,10 @@ function editarProduto(id) {
 
     const novoNome = prompt('Digite o novo nome do produto:');
     const novaQuantidade = prompt('Digite a nova quantidade do produto:');
+    const novoPreco = prompt('Digite o novo preco do produto:');
 
 
-    if (novoNome === null || novaQuantidade === null) {
+    if (novoNome === null || novaQuantidade === null || novoPreco === null) {
         return;
     }
 
@@ -118,7 +117,7 @@ function editarProduto(id) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nome: novoNome, quantidade: parseInt(novaQuantidade) })
+        body: JSON.stringify({ nome: novoNome, quantidade: parseFloat(novaQuantidade), preco: parseFloat(novoPreco) })
     })
         .then(response => {
             if (response.ok) {
@@ -139,9 +138,10 @@ function cadastrarProduto(event) {
 
     const nomeProduto = document.getElementById('nome-produto').value;
     const quantidadeProduto = document.getElementById('quantidade-produto').value;
+    const precoProduto = document.getElementById('preco-produto').value;
 
 
-    if (!nomeProduto || !quantidadeProduto) {
+    if (!nomeProduto || !quantidadeProduto || !precoProduto) {
         alert('Por favor, preencha todos os campos.');
         return;
     }
@@ -149,7 +149,8 @@ function cadastrarProduto(event) {
 
     const novoProduto = {
         nome: nomeProduto,
-        quantidade: parseInt(quantidadeProduto, 10), // Converte para número
+        quantidade: parseInt(quantidadeProduto, 10),
+        preco: parseFloat(precoProduto)
     };
 
 

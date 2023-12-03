@@ -15,9 +15,7 @@
             <ul>
                 <li><a href="#" onclick="mostrarAba('busca')">Buscar</a></li>
                 <li><a href="#" onclick="mostrarAba('cadastrar')">Cadastrar</a></li>
-                <li><a href="#" onclick="mostrarAba('venda')">Venda de Produtos</a></li>
-                <li><a href="#" onclick="mostrarAba('visualizacao')">Visualização de Vendas</a></li>
-                <li><a href="#" onclick="mostrarAba('saida')">Sair</a></li>
+                <li><a href="#" onclick="redirecionarParaLogin()">Sair</a></li>
             </ul>
         </div>
 
@@ -38,6 +36,8 @@
                     <input type="text" id="edit-nome">
                     <label for="edit-quantidade">Quantidade:</label>
                     <input type="number" id="edit-quantidade">
+                    <label for="edit-preco">Quantidade:</label>
+                    <input type="number" id="edit-preco">
                     <button onclick="confirmarEdicao()">Confirmar Edição</button>
                     <button onclick="cancelarEdicao()">Cancelar</button>
                 </div>
@@ -52,6 +52,9 @@
 
                         <label for="quantidade-produto">Quantidade:</label>
                         <input type="number" id="quantidade-produto" name="quantidade" required>
+
+                        <label for="preco-produto">Preço (R$):</label>
+                        <input type="number" id="preco-produto" name="preco" step="0.01" min="0" required>
 
                         <button type="submit" class="botao-cadastrar">Cadastrar</button>
                     </form>

@@ -2,15 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const porta = 3000;
-const estoque = require('./bancoDeDados')
-const { listarProduto, deletarProdutos, cadastrarProdutos, editarProdutos } = require('./controladores/produtos')
-
+const { listaProdutos, deletarProdutos, cadastrarProdutos, editarProdutos } = require('./controladores/produtos')
 app.use(express.json());
 
 app.use(cors());
 
-
-app.get('/produtos', listarProduto);
+app.get('/produtos', listaProdutos);
 
 app.post('/produtos', cadastrarProdutos);
 

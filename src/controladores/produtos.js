@@ -1,19 +1,35 @@
+const { estoque } = require('../bancoDeDados');
 class Produto {
-    constructor(id, nome, quantidade) {
+    constructor(id, nome, quantidade, preco) {
         this.id = id;
         this.nome = nome;
         this.quantidade = quantidade;
+        this.preco = preco;
     }
-}
+};
 
-const listarProduto = (req, res) => {
+const listaProdutos = (req, res) => {
     res.json(estoque);
 };
 
+const deletarProdutos = (req, res) => {
+    const produtoId = Number(req.params.id);
+
+    const index = estoque.findIndex(produto => produto.id === produtoId);
+
+    if (index !== -1) {
+        const produtoRemovido = estoque.splice(index, 1);
+        res.json({ message: 'Produto removido com sucesso.', removedProduct: produtoRemovido[0] });
+    } else {
+        res.status(404).json({ error: 'Produto não encontrado.' });
+    }
+};
+
 const cadastrarProdutos = (req, res) => {
-    const novoProduto = new Produto(req.body.id, req.body.nome, req.body.quantidade);
+    const novoProduto = new Produto(req.body.id = estoque.length + 1, req.body.nome, req.body.quantidade, req.body.preco);
     estoque.push(novoProduto);
     res.status(201).json(novoProduto);
+
 };
 const editarProdutos = (req, res) => {
     const produtoId = Number(req.params.id);
@@ -25,6 +41,8 @@ const editarProdutos = (req, res) => {
 
         produtoExistente.nome = atualizacaoProduto.nome || produtoExistente.nome;
         produtoExistente.quantidade = atualizacaoProduto.quantidade || produtoExistente.quantidade;
+        produtoExistente.preco = atualizacaoProduto.preco || produtoExistente.preco;
+
 
         res.json({ message: 'Produto atualizado com sucesso.' });
     } else {
@@ -32,23 +50,10 @@ const editarProdutos = (req, res) => {
     }
 };
 
-const deletarProdutos = (req, res) => {
-    const produtoId = Number(req.params.id);
-
-    const index = estoque.findIndex(produto => produto.id === produtoId);
-
-    if (index !== -1) {
-        estoque.splice(index, 1);
-        res.json({ message: 'Produto removido com sucesso.' });
-    } else {
-        res.status(404).json({ error: 'Produto não encontrado.' });
-    }
-};
-
 module.exports = {
     Produto,
-    listarProduto,
+    listaProdutos,
     cadastrarProdutos,
-    deletarProdutos,
-    editarProdutos
+    editarProdutos,
+    deletarProdutos
 };
