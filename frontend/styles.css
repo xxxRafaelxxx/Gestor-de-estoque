@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 22px;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+}
+
+.menu-lateral {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.menu-lateral h2 {
+    text-align: center;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.menu-lateral li {
+    margin-bottom: 10px;
+}
+
+.menu-lateral a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.conteudo {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+}
+
+.aba {
+    display: none;
+}
+
+.busca-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.campo-busca {
+    width: 80%;
+    max-width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+#lista-produtos-busca {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#lista-produtos-busca li {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.botoes-container {
+    display: none;
+}
+
+
+#aba-busca .botoes-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 22px;
+}
+
+/* Estilo para o botão de buscar */
+button {
+    padding: 10px 15px;
+    background-color: #4c7aaf;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao-buscar {
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 10px;
+
+}
+
+
+button:hover {
+    background-color: #45a049;
+
+}
+
+#mensagem-listagem {
+    position: absolute;
+    margin-top: 100px;
+    margin-right: 270px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.aba {
+    text-align: center;
+}
+
+.centralizado {
+    display: inline-block;
+    font-size: 18px;
+    width: 150px;
+    margin-top: 20px;
+}
