@@ -2,13 +2,13 @@
   "name": "trabalhodepoo",
   "version": "1.0.0",
   "description": "Trabalho de poo",
-  "main": "src/backend.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "nodemon"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/xxxRafaelxxx/Trabalho-De-Poo.git].git"
+    "url": "git+ssh://git@github.com/xxxRafaelxxx/Gestor-de-estoque.git].git"
   },
   "keywords": [
     "Estoque",
@@ -20,9 +20,9 @@
   "author": "Rafael S Silva",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/xxxRafaelxxx/Trabalho-De-Poo.git]/issues"
+    "url": "https://github.com/xxxRafaelxxx/Gestor-de-estoque]/issues"
   },
-  "homepage": "https://github.com/xxxRafaelxxx/Trabalho-De-Poo.git]#readme",
+  "homepage": "https://github.com/xxxRafaelxxx/Gestor-de-estoque]#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",

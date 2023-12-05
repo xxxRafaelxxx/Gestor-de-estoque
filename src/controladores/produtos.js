@@ -1,12 +1,4 @@
-const { estoque } = require('../bancoDeDados');
-class Produto {
-    constructor(id, nome, quantidade, preco) {
-        this.id = id;
-        this.nome = nome;
-        this.quantidade = quantidade;
-        this.preco = preco;
-    }
-};
+const { estoque, Produto } = require('../bancoDeDados');
 
 const listaProdutos = (req, res) => {
     res.json(estoque);

@@ -41,7 +41,7 @@ function carregarProdutos() {
         .then(produtos => {
             produtos.forEach(produto => {
                 const li = document.createElement('li');
-                li.textContent = `${produto.nome} - Quantidade: ${produto.quantidade} - Preço: R$ ${produto.preco.toFixed(2)}`;
+                li.textContent = `${produto.nome} - Quantidade: ${produto.quantidade} - Preço: uni R$ ${produto.preco.toFixed(2)} - total R$ ${produto.preco.toFixed(2) * produto.quantidade}`;
                 listaProdutos.appendChild(li);
             });
 
@@ -65,7 +65,7 @@ function buscarProduto() {
 
             produtosFiltrados.forEach(produto => {
                 const li = document.createElement('li');
-                li.textContent = `${produto.nome} - Quantidade: ${produto.quantidade} - Preço: R$ ${produto.preco.toFixed(2)}`;
+                li.textContent = `${produto.nome} - Quantidade: ${produto.quantidade} - Preço: uni R$ ${produto.preco.toFixed(2)}  `;
 
                 const botaoApagar = document.createElement('button');
                 botaoApagar.textContent = 'Apagar';
